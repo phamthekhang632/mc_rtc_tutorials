@@ -10,6 +10,7 @@ services:
       dockerfile: ./dockerfiles/Dockerfile
     volumes:
       - "../:/root/colcon_ws/src/"
+      - "./colcon_defaults.yaml:/root/colcon_ws/colcon_defaults.yaml"
     privileged: True
     stdin_open: True
     command: bash

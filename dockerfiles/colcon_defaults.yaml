@@ -1,0 +1,7 @@
+# Colcon configuration defaults
+build:
+  symlink-install: true
+  packages-select:
+    - ur_description
+    - kortex_description
+    - mc_ur5e_description
