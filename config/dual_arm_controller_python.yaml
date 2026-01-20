@@ -1,0 +1,2 @@
+MainRobot: UR5e
+Enabled: [Python3#dual_arm_controller.DualArmController]

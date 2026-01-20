@@ -23,3 +23,4 @@ WORKDIR /root/colcon_ws
 
 # Set environment variables (for using commands)
 RUN echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc
+RUN echo "source /root/colcon_ws/install/setup.bash" >> ~/.bashrc
