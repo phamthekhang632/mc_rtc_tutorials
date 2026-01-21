@@ -4,6 +4,7 @@ import math
 import mc_tasks
 import sva
 import eigen
+import mc_solver
 
 
 class ControllerPhase:
@@ -36,6 +37,7 @@ class DualArmController(mc_control.MCPythonController):
         self._kinova_state = ControllerState.RETURN
         self._urEndEffectorTask = None
         self._kinovaPostureTask = None
+        self._kinovaKinematicsConstraint = None
         ur_joints = [
             "shoulder_pan_joint",
             "shoulder_lift_joint",
@@ -76,14 +78,18 @@ class DualArmController(mc_control.MCPythonController):
         )
         self._urEndEffectorTask.positionTask.stiffness(1)
         self._urEndEffectorTask.orientationTask.stiffness(1)
+        self.qpsolver.addTask(self._urEndEffectorTask)
         self._urEndEffectorTask.selectUnactiveJoints(
             self.qpsolver, self._ur_joints
         )
         self._kinovaPostureTask = mc_tasks.PostureTask(
             self.qpsolver, 1, 5.0, 1000.0
         )
-        self.qpsolver.addTask(self._urEndEffectorTask)
+        self._kinovaKinematicsConstraint = mc_solver.KinematicsConstraint(
+            self.robots(), 1, self.qpsolver.dt()
+        )
         self.qpsolver.addTask(self._kinovaPostureTask)
+        self.qpsolver.addConstraintSet(self._kinovaKinematicsConstraint)
         self.robots().robot(1).posW(
             sva.PTransformd(sva.RotZ(0), eigen.Vector3d(0.7, 0.5, 0))
         )

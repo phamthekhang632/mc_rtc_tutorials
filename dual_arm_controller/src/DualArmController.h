@@ -28,6 +28,7 @@ private:
   ControllerState kinovaState_ = RETURN;
   std::shared_ptr<mc_tasks::PostureTask> kinovaPostureTask_;
   std::shared_ptr<mc_tasks::EndEffectorTask> urEndEffectorTask_;
+  std::shared_ptr<mc_solver::KinematicsConstraint> kinovaKinematics_;
   std::shared_ptr<mc_solver::CollisionsConstraint> collisionConstraint_;
   std::vector<std::string> urJoints_ = {
       "shoulder_pan_joint", "shoulder_lift_joint", "elbow_joint",

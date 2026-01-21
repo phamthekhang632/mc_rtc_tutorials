@@ -78,6 +78,9 @@ void DualArmController::reset(
   solver().addTask(urEndEffectorTask_);
   kinovaPostureTask_ = std::make_shared<mc_tasks::PostureTask>(solver(), 1);
   solver().addTask(kinovaPostureTask_);
+  kinovaKinematics_ = std::make_shared<mc_solver::KinematicsConstraint>(
+      robots(), 1, solver().dt());
+  solver().addConstraintSet(*kinovaKinematics_);
   robots().robot(1).posW(
       sva::PTransformd(sva::RotZ(0.0), Eigen::Vector3d(0.7, 0.5, 0)));
 }
