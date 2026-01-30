@@ -10,12 +10,12 @@ To easily set up the environment for running the tutorials, you can use Docker. 
 1. Install Docker and Docker Compose on your system if you haven't already [Docker website](https://docs.docker.com/get-docker/).
 2. Clone this repository to your local machine:
    ```bash
-   git clone --recursive https://github.com/isri-aist/mc_rtc_tutorials.git
+   git clone --recursive https://github.com/HACHIX-CORPORATION/mc_rtc_tutorials.git
    ```
 3. Navigate to the `dockerfiles` directory of cloned repository and build, run the Docker container using Docker Compose:
    ```bash
    cd mc_rtc_tutorials/dockerfiles
-   docker-compose up -d
+   docker compose up -d
    ```
 4. Access the running container:
    ```bash
@@ -26,7 +26,7 @@ It is not recommended to run the tutorials without Docker since it is mixed betw
 1. Install [mc_rtc](https://jrl.cnrs.fr/mc_rtc/) on your system.
 2. Clone this repository to your local machine:
    ```bash
-   git clone --recursive https://github.com/isri-aist/mc_rtc_tutorials.git
+   git clone --recursive https://github.com/HACHIX-CORPORATION/mc_rtc_tutorials.git
    ```
 3. Build the following ROS2 packages in a colcon workspace (assuming you have ROS2 Humble installed, and sourced):
     - `ur_description`
