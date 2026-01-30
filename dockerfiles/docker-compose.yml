@@ -12,7 +12,8 @@ services:
       dockerfile: ./dockerfiles/Dockerfile
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix
-      - ~/.Xauthority:/root/.Xauthority
+      # Use the command 'echo $XAUTHORITY' to find exact path
+      - /run/user/1000/gdm/Xauthority:/root/.Xauthority
 
       - "..:/root/mc_rtc_ws/"
       - "../robots_description/:/root/colcon_ws/src/"
