@@ -16,7 +16,7 @@
 	url = https://github.com/Kinovarobotics/ros2_kortex
 [submodule "robots/dingo"]
 	path = robots_description/dingo
-	url = https://github.com/HosseinSheikhi/dingo
+	url = https://github.com/HACHIX-CORPORATION/dingo
 [submodule "robots/mc_dingo"]
 	path = robots/mc_dingo
 	url = https://github.com/HACHIX-CORPORATION/mc_dingo
