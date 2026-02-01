@@ -15,7 +15,8 @@ services:
       # Use the command 'echo $XAUTHORITY' to find exact path
       - /run/user/1000/gdm/Xauthority:/root/.Xauthority
 
-      - "..:/root/mc_rtc_ws/"
+      - "../config:/root/config/"
+      - "../controllers:/root/mc_rtc_ws/"
       - "../robots_description/:/root/colcon_ws/src/"
       - "../robots/:/root/mc_robots/"
       - "./colcon_defaults.yaml:/root/colcon_ws/colcon_defaults.yaml"
