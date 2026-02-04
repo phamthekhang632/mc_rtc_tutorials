@@ -19,7 +19,6 @@ services:
       - "../controllers:/root/mc_rtc_ws/"
       - "../robots_description/:/root/colcon_ws/src/"
       - "../robots/:/root/mc_robots/"
-      - "./colcon_defaults.yaml:/root/colcon_ws/colcon_defaults.yaml"
     privileged: True
     stdin_open: True
     command: bash
