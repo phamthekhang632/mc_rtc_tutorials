@@ -27,3 +27,6 @@
 [submodule "robots_interface/mc_kortex"]
 	path = robots_interface/mc_kortex
 	url = git@github.com:mathieu-celerier/mc_kortex.git
+[submodule "robots_description/ros2_robotiq_gripper"]
+	path = robots_description/ros2_robotiq_gripper
+	url = git@github.com:PickNikRobotics/ros2_robotiq_gripper.git
