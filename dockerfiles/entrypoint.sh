@@ -3,35 +3,38 @@ set -e
 
 source /opt/ros/humble/setup.bash
 
+echo "--- Compiling robots_description ---"
 cd /root/colcon_ws
 colcon build
-
 if [ -f "/root/colcon_ws/install/setup.bash" ]; then
   source "/root/colcon_ws/install/setup.bash"
 fi
+echo "--- Complete Compiling robots_description ---"
 
 echo "--- Compiling mc_robots ---"
 mkdir -p /root/mc_robots/build
 cd /root/mc_robots/build
 cmake .. -DCMAKE_BUILD_TYPE=RelWithDebInfo
-make install
-echo "--- Compilation Complete ---"
+make install 
+echo "--- Complete Compiling mc_robots ---"
 
 echo "--- Compiling controllers ---"
 mkdir -p /root/mc_rtc_ws/build
 cd /root/mc_rtc_ws/build
 cmake .. -DCMAKE_BUILD_TYPE=RelWithDebInfo
-make install
-echo "--- Compilation Complete ---"
+make install 
+echo "--- Complete Compiling robots_description ---"
 
 echo "--- Compiling mc_interface ---"
 mkdir -p /root/mc_interface/build
 cd /root/mc_interface/build
 cmake .. -DCMAKE_BUILD_TYPE=RelWithDebInfo
-make install
-echo "--- Compilation Complete ---"
+make install 
+echo "--- Complete Compiling mc_interface ---"
 
 echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc
 echo "source /root/colcon_ws/install/setup.bash" >> ~/.bashrc
 
-exec "$@"
+echo "--- mc_rtc_tutorials is ready ---"
+
+exec "$@" 
