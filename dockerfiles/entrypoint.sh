@@ -2,6 +2,7 @@
 set -e
 
 source /opt/ros/humble/setup.bash
+ldconfig # TODO: why ldconfig in Dockerfile does not work ?
 
 echo "--- Compiling robots_description ---"
 cd /root/colcon_ws

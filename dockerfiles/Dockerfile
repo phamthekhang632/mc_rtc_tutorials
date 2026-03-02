@@ -40,7 +40,9 @@ RUN apt-get install qhull-bin
 # Needed for mc_rtde
 RUN add-apt-repository ppa:sdurobotics/ur-rtde \
     && apt-get update \
-    && apt-get install librtde librtde-dev
+    && apt-get install librtde librtde-dev \
+    && echo "/opt/ros/${ROS_DISTRO}/lib" | sudo tee -a /etc/ld.so.conf.d/ros.conf \
+    ldconfig
 WORKDIR /opt
 RUN git clone https://github.com/jrl-umi3218/ur_modern_driver && \
     cd ur_modern_driver && \
