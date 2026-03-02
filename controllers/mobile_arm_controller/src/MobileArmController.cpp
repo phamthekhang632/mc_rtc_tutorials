@@ -3,6 +3,7 @@
 #include <mc_rbdyn/RobotLoader.h>
 #include <mc_tasks/TransformTask.h>
 #include <chrono>
+#include <memory>
 #include <thread>
 
 MobileArmController::MobileArmController(mc_rbdyn::RobotModulePtr rm, double dt, const mc_rtc::Configuration & config)
@@ -74,8 +75,8 @@ void MobileArmController::reset(const mc_control::ControllerResetData & reset_da
   handTask_ = std::make_shared<mc_tasks::SurfaceTransformTask>("Tool", robots(), 0);
   dingoBaseTask_ = std::make_shared<mc_tasks::TransformTask>("base_link", robots(), 1, 2.0, 1000);
 
-  doorKinematics_ = std::make_shared<mc_solver::KinematicsConstraint>(robots(), 2, solver().dt());
-  solver().addConstraintSet(*doorKinematics_);
+  doorKinematics_ = std::make_unique<mc_solver::KinematicsConstraint>(robots(), 2, solver().dt());
+  solver().addConstraintSet(doorKinematics_);
   doorPostureTask_ = std::make_shared<mc_tasks::PostureTask>(solver(), 2, 1.0, 1.0);
   solver().addTask(doorPostureTask_);
 

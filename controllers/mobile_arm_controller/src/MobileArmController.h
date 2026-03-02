@@ -25,6 +25,6 @@ private:
   Phase phase_ = APPROACH;
   std::shared_ptr<mc_tasks::SurfaceTransformTask> handTask_;
   std::shared_ptr<mc_tasks::TransformTask> dingoBaseTask_;
-  std::shared_ptr<mc_solver::KinematicsConstraint> doorKinematics_;
+  std::unique_ptr<mc_solver::KinematicsConstraint> doorKinematics_;
   std::shared_ptr<mc_tasks::PostureTask> doorPostureTask_;
 };
