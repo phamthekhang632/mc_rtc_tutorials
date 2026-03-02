@@ -64,7 +64,7 @@ class DualArmController(mc_control.MCPythonController):
 
     def reset_callback(self, data):
         self._urEndEffectorTask = mc_tasks.EndEffectorTask(
-            "wrist_3_link", self.robots(), 0, 1
+            "tool0", self.robots(), 0, 1
         )
 
         self._kinovaPostureTask = mc_tasks.PostureTask(
