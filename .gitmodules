@@ -30,3 +30,9 @@
 [submodule "robots/mc_robotiq2f"]
 	path = robots/mc_robotiq2f
 	url = git@github.com:phamthekhang632/mc_robotiq2f.git
+[submodule "controllers/urx_learning"]
+	path = controllers/urx_learning
+	url = git@github.com:phamthekhang632/urx_learning.git
+[submodule "robots_interface/mc_kortex"]
+	path = robots_interface/mc_kortex
+	url = git@github.com:mathieu-celerier/mc_kortex.git
