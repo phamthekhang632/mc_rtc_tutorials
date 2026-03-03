@@ -36,3 +36,6 @@
 [submodule "robots_interface/mc_kortex"]
 	path = robots_interface/mc_kortex
 	url = git@github.com:mathieu-celerier/mc_kortex.git
+[submodule "robots_interface/ur_rtde"]
+	path = robots_interface/ur_rtde
+	url = https://gitlab.com/sdurobotics/ur_rtde.git
