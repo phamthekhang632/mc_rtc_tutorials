@@ -39,3 +39,6 @@
 [submodule "robots_interface/ur_rtde"]
 	path = robots_interface/ur_rtde
 	url = https://gitlab.com/sdurobotics/ur_rtde.git
+[submodule "controllers/kinova_learning"]
+	path = controllers/kinova_learning
+	url = git@github.com:phamthekhang632/kinova_learning.git

@@ -22,6 +22,8 @@ services:
       - "./colcon_defaults.yaml:/root/colcon_ws/colcon_defaults.yaml"
       - "../robots/:/root/mc_robots/"
       - "../robots_interface/:/root/mc_interface/"
+
+      - "../.config/:/root/.config/"
     privileged: True
     stdin_open: True
     command: bash

@@ -1,0 +1,52 @@
+###################################
+# Default configuration of mc_rtc #
+###################################
+# This file contains the default configuration of mc_rtc
+#
+# You may overwrite any of these settings in
+# - Linux/MacOS: $HOME/.config/mc_rtc/mc_rtc.yaml
+# - Windows:     %APPDATA%/mc_rtc/mc_rtc.conf
+#
+# For further details, refer to https://jrl-umi3218.github.io/mc_rtc/tutorials/introduction/configuration.html
+
+# What robot is being controlled
+MainRobot: Kinova
+# Enabled controllers
+Enabled: [Posture]
+# Controller timestep
+Timestep: 0.001
+# Always include the half-sitting controller
+# IncludeHalfSitController: true
+
+LogPolicy: threaded
+
+Kortex:
+  init_posture:
+    on_startup: false
+    posture: [0.0, 0.4173, 3.1292, -2.1829, 0.0, 1.0342, 1.5226]
+
+  torque_control:
+    mode: custom  # Options: default, feedforward, custom
+
+    # Gain on the Kortex API transfer function
+    lambda: [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
+
+    friction_compensation:
+      velocity_threshold: 0.05        # rad/s
+      acceleration_threshold: 1.0     # rad/s^2 (used when velocity is below threshold)
+
+      # Example friction parameters — tune for your robot
+      stiction: [4.0, 4.0, 4.0, 4.0, 1.5, 1.5, 1.5]
+      coulomb:  [3.5, 3.5, 3.5, 3.5, 1.2, 1.2, 1.2]
+      viscous:  [2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0]
+
+    # Leaky integrator, sum with the Kortex transfer function
+    integral_term:
+      theta: 2
+      gain: 10
+
+  # Robot connection parameters
+  kinova_default:
+    ip: 192.168.1.10
+    username: admin   # Default username (may differ on your setup)
+    password: admin   # Default password
