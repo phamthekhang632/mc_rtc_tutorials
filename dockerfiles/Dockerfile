@@ -20,7 +20,7 @@ RUN apt-get install -y \
     mc-rtc-utils \
     ros-${ROS_DISTRO}-mc-rtc-plugin \
     ros-${ROS_DISTRO}-mc-rtc-tools \
-    ros-humble-gazebo-ros-pkgs \ 
+    ros-humble-gazebo-ros-pkgs \
     ros-humble-hardware-interface
 
 # Install cmake
