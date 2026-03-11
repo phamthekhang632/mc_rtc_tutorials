@@ -44,12 +44,9 @@ class MobileArmController(mc_control.MCPythonController):
         self._phase = ControllerPhase.APPROACH
 
     def run_callback(self):
-        if self._phase == ControllerPhase.APPROACH and self.count < 1000:
-            self.count += 1
-        elif (
-            self._phase == ControllerPhase.APPROACH
-            and self._dingoEndEffectorTask.eval().norm() < 1e-5
-            and self._dingoEndEffectorTask.speed().norm() < 1e-5
+        if (self._phase == ControllerPhase.APPROACH
+            and self._dingoBaseTask.eval().norm() < 1e-2
+            and self._dingoBaseTask.speed().norm() < 1e-5
         ):
             self.qpsolver.removeTask(self.postureTask)
             self._handTask.reset()
@@ -77,7 +74,7 @@ class MobileArmController(mc_control.MCPythonController):
             self._phase == ControllerPhase.OPEN
             and self._doorPosture.eval().norm() < 0.01
         ):
-            self.qpsolver.removeTask(self._dingoEndEffectorTask)
+            self.qpsolver.removeTask(self._dingoBaseTask)
             self._doorPosture.target(
                 {
                     "door".encode("utf-8"): [math.pi / 2],
@@ -89,8 +86,8 @@ class MobileArmController(mc_control.MCPythonController):
             and self._doorPosture.eval().norm() < 0.01
         ):
             self.removeContact(mc_control.Contact("ur5e", "door", "Tool", "Handle"))
-            self._dingoEndEffectorTask.reset()
-            self.qpsolver.addTask(self._dingoEndEffectorTask)
+            self._dingoBaseTask.reset()
+            self.qpsolver.addTask(self._dingoBaseTask)
             self.qpsolver.addTask(self.postureTask)
         return True
 
@@ -113,20 +110,19 @@ class MobileArmController(mc_control.MCPythonController):
         self._handTask = mc_tasks.SurfaceTransformTask(
             "Tool", self.robots(), 0, 5.0, 1000.0
         )
-        self._dingoEndEffectorTask = mc_tasks.EndEffectorTask(
-            "base_link", self.robots(), 1, 1.0, 1000.0
+        self._dingoBaseTask = mc_tasks.EndEffectorTask(
+            "base_link", self.robots(), 1, 2.0, 1000.0
         )
-        self.qpsolver.addTask(self._dingoEndEffectorTask)
+        self.qpsolver.addTask(self._dingoBaseTask)
         self.qpsolver.addTask(self.postureTask)
         self.postureTask.target(
             {
                 "shoulder_lift_joint".encode("utf-8"): [-math.pi / 2],
             }
         )
-        self._dingoEndEffectorTask.add_ef_pose(
+        self._dingoBaseTask.add_ef_pose(
             sva.PTransformd(sva.RotZ(0), eigen.Vector3d(1.5, 0.0, 0.0))
         )
-        self.count = 0
 
     @staticmethod
     def create(robot, dt):
