@@ -23,7 +23,7 @@ services:
       - "../robots/:/root/mc_robots/"
       - "../robots_interface/:/root/mc_interface/"
 
-      - "../.config/:/root/.config/"
+      - "../controllers/kinova_learning/etc/mc_rtc.yaml:/root/.config/mc_rtc/mc_rtc.yaml"
     privileged: True
     stdin_open: True
     command: bash
