@@ -42,3 +42,6 @@
 [submodule "controllers/kinova_learning"]
 	path = controllers/kinova_learning
 	url = git@github.com:phamthekhang632/kinova_learning.git
+[submodule "robots_description/ros2_robotiq_gripper"]
+	path = robots_description/ros2_robotiq_gripper
+	url = https://github.com/PickNikRobotics/ros2_robotiq_gripper.git
