@@ -4,6 +4,7 @@ build:
   packages-select:
     - ur_description
     - kortex_description
+    - robotiq_description
     - mc_ur5e_description
     - dingo_description
   cmake-args:

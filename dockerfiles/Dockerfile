@@ -38,11 +38,13 @@ RUN wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/nul
 RUN apt-get install qhull-bin
 
 # Needed for mc_rtde
-RUN add-apt-repository ppa:sdurobotics/ur-rtde \
+RUN echo "deb https://ppa.launchpadcontent.net/sdurobotics/ur-rtde/ubuntu jammy main" \
+    | tee /etc/apt/sources.list.d/ur-rtde.list \
+    && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 6DA6581D9B9716890E7597E59EAFFD5C588AF041 \
     && apt-get update \
-    && apt-get install librtde librtde-dev \
-    && echo "/opt/ros/${ROS_DISTRO}/lib" | sudo tee -a /etc/ld.so.conf.d/ros.conf \
-    ldconfig
+    && apt-get install -y librtde librtde-dev \
+    && echo "/opt/ros/${ROS_DISTRO}/lib" >> /etc/ld.so.conf.d/ros.conf \
+    && ldconfig
 WORKDIR /opt
 RUN git clone https://github.com/jrl-umi3218/ur_modern_driver && \
     cd ur_modern_driver && \
