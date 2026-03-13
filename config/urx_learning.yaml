@@ -13,6 +13,7 @@ RTDE:
   ur5e: # Name of the robot in the controller
     ip: "192.168.1.6"
     driver: "ur_rtde" # Can be: "ur_rtde" (>=CB3) or "ur_modern_driver" (<=CB2). Default: ur_rtde
+    gripper: "robotiq_arg85"
 
   ur7e: # Name of the robot in the controller
     ip: "localhost"
