@@ -24,3 +24,6 @@
 [submodule "robots_interface/mc_rtde"]
 	path = robots_interface/mc_rtde
 	url = https://github.com/isri-aist/mc_rtde
+[submodule "mc_mujoco/ur5e_mj_desription"]
+	path = mc_mujoco/ur5e_mj_description
+	url = https://github.com/isri-aist/ur5e_mj_description.git
