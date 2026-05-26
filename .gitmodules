@@ -27,3 +27,6 @@
 [submodule "mc_mujoco/ur5e_mj_desription"]
 	path = mc_mujoco/ur5e_mj_description
 	url = https://github.com/isri-aist/ur5e_mj_description.git
+[submodule "mc_mujoco/kinova_mj_description"]
+	path = mc_mujoco/kinova_mj_description
+	url = https://github.com/mathieu-celerier/kinova_mj_description.git
