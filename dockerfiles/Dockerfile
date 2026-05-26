@@ -12,7 +12,11 @@ ENV LD_LIBRARY_PATH "/usr/local/lib"
 # Set default bash shell
 SHELL ["/bin/bash", "-c"]
 
-RUN apt-get update && apt install -y curl ca-certificates gpg wget
+RUN apt-get update && apt install -y curl ca-certificates gpg wget zsh fzf
+
+RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+RUN git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+RUN git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-completions
 
 RUN curl -1sLf 'https://dl.cloudsmith.io/public/mc-rtc/head/setup.deb.sh' | bash
 

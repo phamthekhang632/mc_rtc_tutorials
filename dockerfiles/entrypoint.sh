@@ -31,7 +31,13 @@ cmake .. -DCMAKE_BUILD_TYPE=RelWithDebInfo
 make install
 echo "--- Compilation Complete ---"
 
-echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc
-echo "source /root/colcon_ws/install/setup.bash" >> ~/.bashrc
+if ! grep -q "ros/humble/setup.bash" ~/.bashrc 2>/dev/null; then
+    echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc
+    echo "source /root/colcon_ws/install/setup.bash" >> ~/.bashrc
+fi
+if ! grep -q "ros/humble/setup.zsh" ~/.zshrc 2>/dev/null; then
+    echo "source /opt/ros/humble/setup.zsh" >> ~/.zshrc
+    echo "source /root/colcon_ws/install/setup.zsh" >> ~/.zshrc
+fi
 
 exec "$@"
