@@ -33,6 +33,18 @@ RUN apt-get update && apt-get install -y \
     ros-humble-hardware-interface \
     && rm -rf /var/lib/apt/lists/*
 
+# Install dependencies for mc_mujoco
+RUN apt-get update && apt-get install -y libxrandr-dev libxinerama-dev libxcursor-dev libxi-dev libglew-dev
+
+WORKDIR /opt
+RUN source /opt/ros/${ROS_DISTRO}/setup.bash && \
+    git clone --recursive https://github.com/rohanpsingh/mc_mujoco.git && \
+    cd mc_mujoco && \
+    mkdir build && cd build && \
+    cmake .. -DCMAKE_BUILD_TYPE=RelWithDebInfo && \
+    make && \
+    make install
+
 # Install dependencies for robots_interface
 RUN apt-get update \
     && apt-get install -y software-properties-common \
